@@ -1,12 +1,78 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Pages Site</title>
+    <title>Pac-Man Game</title>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, GitHub Pages!</h1>
-    <p>Легендарное железооооооо</p>
+    <h1 style="text-align: center; color: white;">Pac-Man Game</h1>
+    <canvas id="gameCanvas"></canvas>
+    
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        
+        canvas.width = 500;
+        canvas.height = 500;
+        
+        let pacMan = {
+            x: 250,
+            y: 250,
+            radius: 20,
+            color: "yellow",
+            speed: 5,
+            dx: 0,
+            dy: 0
+        };
+        
+        // Установим движения
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowLeft") pacMan.dx = -pacMan.speed;
+            if (e.key === "ArrowRight") pacMan.dx = pacMan.speed;
+            if (e.key === "ArrowUp") pacMan.dy = -pacMan.speed;
+            if (e.key === "ArrowDown") pacMan.dy = pacMan.speed;
+        });
+        
+        document.addEventListener("keyup", (e) => {
+            if (e.key === "ArrowLeft" || e.key === "ArrowRight") pacMan.dx = 0;
+            if (e.key === "ArrowUp" || e.key === "ArrowDown") pacMan.dy = 0;
+        });
+        
+        function drawPacMan() {
+            ctx.beginPath();
+            ctx.arc(pacMan.x, pacMan.y, pacMan.radius, 0, Math.PI * 2);
+            ctx.fillStyle = pacMan.color;
+            ctx.fill();
+            ctx.closePath();
+        }
+        
+        function updateGame() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            pacMan.x += pacMan.dx;
+            pacMan.y += pacMan.dy;
+            
+            if (pacMan.x < 0) pacMan.x = 0;
+            if (pacMan.x > canvas.width) pacMan.x = canvas.width;
+            if (pacMan.y < 0) pacMan.y = 0;
+            if (pacMan.y > canvas.height) pacMan.y = canvas.height;
+            
+            drawPacMan();
+            requestAnimationFrame(updateGame);
+        }
+        
+        updateGame();
+    </script>
 </body>
 </html>

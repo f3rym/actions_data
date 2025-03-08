@@ -10,12 +10,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # клонируем репозиторий
       - name: Checkout repository
         uses: actions/checkout@v4
-
+      # node.js
+      - name: Set Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      # зависимости
+      - name: dependencies
+        run: nmp install
+      # test
+      - name: test
+        run: npm test
+      # создаем папку public
       - name: Ensure public folder exists
         run: mkdir -p public
-
+      # деплоим
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
