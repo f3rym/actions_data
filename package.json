@@ -1,0 +1,16 @@
+{
+	"name": "pacman-game",
+	"version": "1.0.0",
+	"description": "A simple Pac-Man game",
+	"main": "index.html",
+	"scripts": {
+		"test": "jest",
+		"build": "echo 'Build step is not required'"
+	},
+	"devDependencies": {
+		"jest": "^28.0.0"
+	},
+	"dependencies": {},
+	"author": "",
+	"license": "ISC"
+}
