@@ -12,8 +12,8 @@
 	},
 	"dependencies": {},
 	"jest": {
-		"testEnvironment": "jsdom"
-	},
+    "testEnvironment": "jest-environment-jsdom"
+    },
 	"author": "",
 	"license": "ISC"
 }
