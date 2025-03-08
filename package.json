@@ -8,12 +8,12 @@
 		"build": "echo 'Build step is not required'"
 	},
 	"devDependencies": {
-		"jest": "^28.0.0"
+		"jest": "^27.0.0"
 	},
 	"dependencies": {},
 	"jest": {
-    "testEnvironment": "jest-environment-jsdom"
-    },
+		"testEnvironment": "jsdom"
+	},
 	"author": "",
 	"license": "ISC"
 }
