@@ -27,6 +27,11 @@ jobs:
       # создаем папку public
       - name: Ensure public folder exists
         run: mkdir -p public
+      # Создаем папку public и копируем туда все файлы для игры
+      - name: Copy game files to public
+        run: |
+          cp -r src/* public/   # Копируем все исходные файлы из src в public
+          cp index.html public/  # Копируем главный HTML файл в public
       # деплоим
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
