@@ -1,4 +1,4 @@
-const { PacMan } = require('./game') // Пусть будет модуль, который мы создадим для логики
+const { PacMan } = require('../src/game') // Импортируем игру
 
 describe('PacMan', () => {
 	let pacMan
