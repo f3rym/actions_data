@@ -31,6 +31,12 @@ jobs:
       - name: Copy game files to public
         run: |
           cp -r src/* public/   # Копируем все исходные файлы из src в public
+      # rerrere
+      - name: check
+        run : |
+          ls
+          ls src
+          ls public
       # деплоим
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
