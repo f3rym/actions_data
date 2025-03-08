@@ -1,0 +1,31 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Настроим на основную ветку
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js (optional, если нужен для сборки)
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Build project (если нужно, например, сборка статического контента)
+        run: |
+          # Тут можно вставить команды для сборки, если это нужно
+          # Например, для сайтов с генераторами статического контента
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # Мы будем деплоить на ветку gh-pages
+          folder: .  # Публикуем из корня проекта
+          token: ${{ secrets.GITHUB_TOKEN }}  # Для деплоя нужно использовать GitHub token
