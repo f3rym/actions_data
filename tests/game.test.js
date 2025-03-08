@@ -1,27 +1,30 @@
 // tests/game.test.js
 
-const { PacMan } = require('../src/game') // ваш основной модуль игры
+const { PacMan } = require('../src/game')
 
 describe('PacMan', () => {
 	let pacMan
 
-	beforeAll(() => {
-		// Мокаем элемент canvas
-		document.body.innerHTML = `
-      <canvas id="gameCanvas"></canvas>
-    `
-		const canvas = document.getElementById('gameCanvas')
-		canvas.getContext = jest.fn().mockReturnValue({
-			clearRect: jest.fn(),
-			fillRect: jest.fn(),
-			// добавьте другие методы, которые вам нужны для тестов
-		})
+	beforeEach(() => {
+		pacMan = new PacMan() // создаем новый объект PacMan перед каждым тестом
 	})
 
-	it('should create a new PacMan object', () => {
-		pacMan = new PacMan()
-		expect(pacMan).toBeDefined()
+	it('should initialize PacMan with correct position and direction', () => {
+		expect(pacMan.x).toBe(50)
+		expect(pacMan.y).toBe(50)
+		expect(pacMan.direction).toBe('right')
 	})
 
-	// добавьте остальные тесты
+	it('should move PacMan to the right', () => {
+		pacMan.move()
+		expect(pacMan.x).toBe(55) // PacMan должен двигаться на 5 единиц вправо
+		expect(pacMan.y).toBe(50)
+	})
+
+	it('should change direction and move accordingly', () => {
+		pacMan.changeDirection('down')
+		pacMan.move()
+		expect(pacMan.x).toBe(50)
+		expect(pacMan.y).toBe(55) // Теперь PacMan должен двигаться вниз
+	})
 })
